@@ -13,21 +13,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!!!"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="submit"
         android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="24dp"
-        android:textColor="#F2B890"
-        android:background="#000000"
+        android:textSize="16dp"
         android:onClick="submit"
         android:focusableInTouchMode="true"
-        android:layout_alignParentRight="true" />
+        android:contextClickable="true"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:layout_below="@+id/editText"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="male"
+            android:id="@+id/maleRadioButton"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="female"
+            android:id="@+id/femaleRadioButton"
+            android:checked="false" />
+    </RadioGroup>
 </RelativeLayout>
