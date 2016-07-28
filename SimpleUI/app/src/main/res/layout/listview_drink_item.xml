@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="drinkName"
+        android:id="@+id/drinkNameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginStart="76dp"
+        android:layout_alignParentEnd="false"
+        android:layout_toRightOf="@+id/imageView"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:id="@+id/M"
+        android:layout_below="@+id/drinkNameTextView"
+        android:layout_alignLeft="@+id/drinkNameTextView"
+        android:layout_alignStart="@+id/drinkNameTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:id="@+id/mPriceTextView"
+        android:layout_toRightOf="@+id/M"
+        android:layout_toEndOf="@+id/M"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/drinkNameTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L"
+        android:id="@+id/L"
+        android:layout_toRightOf="@+id/mPriceTextView"
+        android:layout_toEndOf="@+id/mPriceTextView"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/drinkNameTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="35"
+        android:id="@+id/lPriceTextView"
+        android:layout_below="@+id/drinkNameTextView"
+        android:layout_alignLeft="@+id/L"
+        android:layout_alignStart="@+id/L"
+        android:layout_marginLeft="10dp" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
+
+</RelativeLayout>

@@ -1,8 +1,10 @@
 package com.example.user.simpleui;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    final static int REQUEST_CODE_DRINK_MENU_ACTIVITY = 0;
+
     TextView textView;
     EditText editText;
     RadioGroup radioGroup;
@@ -106,15 +111,58 @@ public class MainActivity extends AppCompatActivity {
         order.drink = drink;
         order.storeInfo = (String) spinner.getSelectedItem();
 
-
         orders.add(order);
         setUpListView();
-    }
 
+    }
+    public void goToMenu(View view){
+        Intent intent = new Intent();
+        intent.setClass(this, DrinkMenuActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_DRINK_MENU_ACTIVITY);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_DRINK_MENU_ACTIVITY){
+            if(resultCode == RESULT_OK){
+                Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.d("debug", "MainActivity OnStart");
+    }
+    @Override
+    protected  void onRestart(){
+        super.onRestart();
+        Log.d("debug", "MainActivity OnRestart");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("debug", "MainActivity OnResume");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("debug", "MainActivity OnDestroy");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("debug", "MainActivity OnPause");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("debug", "MainActivity OnStop");
+    }
+    }
+/*
     @Override
     public void onStart() {
         super.onStart();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -134,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
@@ -151,3 +198,4 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 }
+*/
