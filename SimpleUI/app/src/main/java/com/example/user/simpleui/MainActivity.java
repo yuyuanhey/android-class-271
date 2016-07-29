@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
             }
+            else if(resultCode == RESULT_CANCELED){
+                Toast.makeText(this, "Cancel", Toast.LENGTH_LONG).show();
+            }
         }
     }
     @Override

@@ -55,9 +55,10 @@ public class DrinkMenuActivity extends AppCompatActivity implements DrinkOrderDi
     private void showDrinkOrderDialog(Drink drink){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        DrinkOrderDialog dialog = DrinkOrderDialog.newInstance();
-        ft.replace(R.id.root, dialog);
-        ft.commit();
+        DrinkOrderDialog dialog = DrinkOrderDialog.newInstance(drink);
+        dialog.show(ft, "DrinkOrderDialog");
+//        ft.replace(R.id.root, dialog);
+//        ft.commit();
     }
     public void setupTotalTextView(){
         int total = 0;
@@ -69,6 +70,11 @@ public class DrinkMenuActivity extends AppCompatActivity implements DrinkOrderDi
     public void done(View view){
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
+        finish();
+    }
+    public void cancel(View view){
+        Intent intent = new Intent();
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 
@@ -116,6 +122,6 @@ public class DrinkMenuActivity extends AppCompatActivity implements DrinkOrderDi
 
     @Override
     public void onDrinkOrderFinished() {
-        
+
     }
 }

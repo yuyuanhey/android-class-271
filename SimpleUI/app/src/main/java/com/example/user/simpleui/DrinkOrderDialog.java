@@ -1,12 +1,22 @@
 package com.example.user.simpleui;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.DialogPreference;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.RadioGroup;
 
 
 /**
@@ -17,11 +27,16 @@ import android.view.ViewGroup;
  * Use the {@link DrinkOrderDialog#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DrinkOrderDialog extends Fragment {
+public class DrinkOrderDialog extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String DRINK_PARAM = "drink";
+    Drink drink;
+    NumberPicker mediumNumberPicker;
+    NumberPicker largeNumberPicker;
+    RadioGroup iceRadioGroup;
+    RadioGroup sugarRadioGroup;
+    EditText noteEditText;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -40,28 +55,67 @@ public class DrinkOrderDialog extends Fragment {
      * @return A new instance of fragment DrinkOrderDialog.
      */
     // TODO: Rename and change types and number of parameters
-    public static DrinkOrderDialog newInstance() {
+    public static DrinkOrderDialog newInstance(Drink drink) {
         DrinkOrderDialog fragment = new DrinkOrderDialog();
         Bundle args = new Bundle();
+        
+        args.putParcelable(DRINK_PARAM, drink);
+
         fragment.setArguments(args);
         return fragment;
     }
 
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if (getArguments() != null) {
+//        }
+//        mListener.onDrinkOrderFinished();
+//    }
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_drink_order_dialog, container, false);
+//
+//    }
+    //@NonNull
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+    public Dialog onCreateDialog(Bundle savedInstanceState){
+        if(getArguments() != null){
+            drink = getArguments().getParcelable(DRINK_PARAM);
         }
-        mListener.onDrinkOrderFinished();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        View content = getActivity().getLayoutInflater().inflate(R.layout.fragment_drink_order_dialog, null);
+        builder.setView(content)
+               .setTitle(drink.name)
+               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+
+                   }
+               })
+               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+
+                   }
+               });
+        mediumNumberPicker = (NumberPicker)content.findViewById(R.id.mediumNumberPicker);
+        largeNumberPicker = (NumberPicker)content.findViewById(R.id.largeNumberPicker);
+        iceRadioGroup = (RadioGroup)content.findViewById(R.id.iceRadioGroup);
+        sugarRadioGroup = (RadioGroup)content.findViewById(R.id.sugarRadioGroup);
+        noteEditText = (EditText)content.findViewById(R.id.noteEditText);
+
+        mediumNumberPicker.setMaxValue(100);
+        mediumNumberPicker.setMinValue(0);
+        largeNumberPicker.setMaxValue(100);
+        largeNumberPicker.setMinValue(0);
+        return builder.create();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drink_order_dialog, container, false);
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     @Override

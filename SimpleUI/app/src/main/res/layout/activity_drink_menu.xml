@@ -50,4 +50,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:onClick="done" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:id="@+id/cancelButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2"
+        android:nestedScrollingEnabled="false"
+        android:onClick="cancel" />
 </RelativeLayout>
