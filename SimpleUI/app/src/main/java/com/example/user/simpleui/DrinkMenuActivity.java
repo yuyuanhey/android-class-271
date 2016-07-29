@@ -1,5 +1,7 @@
 package com.example.user.simpleui;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrinkMenuActivity extends AppCompatActivity {
+public class DrinkMenuActivity extends AppCompatActivity implements DrinkOrderDialog.OnDrinkOrderListener{
     ListView drinkMenuListView;
     TextView totalTextView;
 
@@ -44,10 +46,18 @@ public class DrinkMenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Drink drink = (Drink) parent.getAdapter().getItem(position);
+                showDrinkOrderDialog(drink);
                 drinkOrderList.add(drink);
                 setupTotalTextView();
             }
         });
+    }
+    private void showDrinkOrderDialog(Drink drink){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        DrinkOrderDialog dialog = DrinkOrderDialog.newInstance();
+        ft.replace(R.id.root, dialog);
+        ft.commit();
     }
     public void setupTotalTextView(){
         int total = 0;
@@ -104,4 +114,8 @@ public class DrinkMenuActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onDrinkOrderFinished() {
+        
+    }
 }
